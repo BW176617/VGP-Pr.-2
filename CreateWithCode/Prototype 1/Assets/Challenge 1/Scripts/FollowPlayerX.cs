@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,5 +17,6 @@ public class FollowPlayerX : MonoBehaviour
     void Update()
     {
         transform.position = plane.transform.position + offset;
+        
     }
 }
