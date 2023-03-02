@@ -6,15 +6,21 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject [] enemyPrefabs;
     public int enemyIndex;
-    public GameObject powerupPrefab;
+    public GameObject [] powerupPrefabs;
     private float spawnRange = 9;
     public int waveNumber = 1;    
     public int enemyCount;
+
+    public GameObject Missile;
+    public float missileSpeed = 100.0f;
+    public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
+        int randomPowerup = Random.Range(0, powerupPrefabs.Length);
+        Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(),
+        powerupPrefabs[randomPowerup].transform.rotation);
         SpawnEnemyWave(waveNumber);  
-        Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
     }
 
     // Update is called once per frame
@@ -25,7 +31,9 @@ public class SpawnManager : MonoBehaviour
         {
             waveNumber++;
             SpawnEnemyWave(waveNumber);
-            Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+                                int randomPowerup = Random.Range(0, powerupPrefabs.Length);
+            Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(),
+            powerupPrefabs[randomPowerup].transform.rotation);
         }
     }
 
@@ -42,6 +50,14 @@ public class SpawnManager : MonoBehaviour
         {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
         Instantiate(enemyPrefabs[enemyIndex], GenerateSpawnPosition(), enemyPrefabs[enemyIndex].transform.rotation);
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("MissilePowerup"))
+        {
+            Destroy(other.gameObject);
+            Instantiate(Missile, Player.transform.position, Missile.transform.rotation);
         }
     }
 }
