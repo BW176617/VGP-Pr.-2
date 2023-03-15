@@ -11,9 +11,6 @@ public class SpawnManager : MonoBehaviour
     public int waveNumber = 1;    
     public int enemyCount;
 
-    public GameObject Missile;
-    public float missileSpeed = 100.0f;
-    public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,14 +47,6 @@ public class SpawnManager : MonoBehaviour
         {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
         Instantiate(enemyPrefabs[enemyIndex], GenerateSpawnPosition(), enemyPrefabs[enemyIndex].transform.rotation);
-        }
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("MissilePowerup"))
-        {
-            Destroy(other.gameObject);
-            Instantiate(Missile, Player.transform.position, Missile.transform.rotation);
         }
     }
 }

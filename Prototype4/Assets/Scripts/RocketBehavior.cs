@@ -12,8 +12,7 @@ public class RocketBehavior : MonoBehaviour
     private float aliveTimer = 5.0f;
     // Update is called once per frame
     void Update()
-    {
-            
+    {        
     if(homing && target != null)
         {
             Vector3 moveDirection = (target.transform.position - transform.position).normalized;
@@ -23,7 +22,7 @@ public class RocketBehavior : MonoBehaviour
     }
     public void Fire(Transform newTarget)
     {
-        target = homingTarget;
+        target = newTarget;
         homing = true;
         Destroy(gameObject, aliveTimer);
     }
