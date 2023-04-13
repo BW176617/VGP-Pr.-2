@@ -11,6 +11,8 @@ public class Target : MonoBehaviour
     private float maxTorque = 10;
     private float xRange = 4;
     private float ySpawnPos = -2;
+    public int pointValue;
+    public ParticleSystem explosionParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +29,38 @@ public class Target : MonoBehaviour
     {
         
     }
-
+/*
     private void OnMouseDown()
     {
-        Destroy(gameObject);
-        gameManager.UpdateScore(5);
+        if(gameManager.isGameActive)
+        {
+            Destroy(gameObject);
+            gameManager.UpdateScore(pointValue);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+        }
     }
-
+*/
     private void OnTriggerEnter(Collider Other)
     {
         Destroy(gameObject);
+        if (!gameObject.CompareTag("Bad") && gameManager.isGameActive)
+        {
+            gameManager.UpdateLives(-1);
+        }
+    }
+
+    public void DestroyTarget()
+    {
+        //access the GameManager script and see if the game
+        //is active or not
+        if(gameManager.isGameActive)
+        {
+            Destroy(gameObject); //destroy current target
+
+            //create an explosion where the target used to be
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            gameManager.UpdateScore(pointValue);
+        } 
     }
 
     Vector3 RandomForce()

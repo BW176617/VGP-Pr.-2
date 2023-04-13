@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     public float xRange = 22.0f;
     public float zRange = 22.0f;
     public float health = 100;
+    public bool HasFuel;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +62,10 @@ public class PlayerMove : MonoBehaviour
     {
         Destroy(other.gameObject);
         health = health + 25;
+    }
+    if(other.gameObject.CompareTag("Fuel"))
+    {
+        HasFuel = true;
     }
     
     if(other.gameObject.CompareTag("Enemy"))
