@@ -1502,6 +1502,7 @@ MonoBehaviour:
   - {fileID: 6448268341571399372, guid: 916879bfe1c826840be52764eccfe842, type: 3}
   - {fileID: 6363788178603042100, guid: 366dbdeefe7c66840b7dab142a3286eb, type: 3}
   - {fileID: 4129299840809349012, guid: d7e93f068584fcd46875de5907cad572, type: 3}
+  - {fileID: 5502398516474112214, guid: ef591b1074b599249b277c05b2a5e171, type: 3}
   scoreText: {fileID: 1452861245}
   gameOverText: {fileID: 1456006766}
   isGameActive: 0
